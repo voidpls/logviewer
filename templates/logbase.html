@@ -10,6 +10,7 @@
     <meta content="Recipient: {{ log_entry.recipient | string | e }}" property="og:title">
     <meta content='{{ log_entry.recipient.avatar_url }}' property='og:image'>
     <meta content='Created {{ log_entry.human_created_at }}' property='og:image'>
+    <meta name="theme-color" content="#ffffff">
 
     <link href="/static/css/logstyle.css" rel="stylesheet">
     <link href="/static/css/solarized-dark.css" rel="stylesheet">
@@ -28,12 +29,12 @@
 <body>
 
         {% block navbar %}
-		
+
 		{% include 'navbar.html' %}
 
 		{% endblock %}
-    
-    
+
+
 <div class='entry'>
 
     <br>
@@ -60,16 +61,16 @@
             {% endif %}
 
             <div class="info__channel-message-count">{{ log_entry.thread_messages | length }}
-                messages 
+                messages
                 {% if log_entry.internal_messages %}
-            
+
                 <div style="display: flex; justify-content: flex-end">
                 <label class="switch" title="Toggle viewing internal messages">
                         <input id='internal_toggle' type="checkbox" onclick="toggleInternalMessages()">
                         <span class="lever round"></span>
                     </label>
                 </div>
-                
+
                 {% endif %}
             </div>
         </div>
@@ -162,7 +163,7 @@
                         history.pushState(null, null, '#' + child.id);
                         elem.classList.add('perma_hover')
                     }
-                    return 
+                    return
                 }
             }
         }
@@ -178,7 +179,7 @@
                     return group
                 }
             }
-        } 
+        }
 
         function removePermaHover(elem) {
             for (let elem of document.getElementsByClassName('perma_hover')) {
@@ -189,7 +190,7 @@
 
         window.onhashchange = highlightMessage;
 
-        function scrollToElement(pageElement) {          
+        function scrollToElement(pageElement) {
                 let y = pageElement.getBoundingClientRect().top + window.scrollY - 70
                 window.scroll({
                     top: y,
@@ -221,7 +222,7 @@
             });
         });
 
-        function toggleInternalMessages() {   
+        function toggleInternalMessages() {
             let messages = document.getElementsByClassName('internal')
             for (let m of messages) {
                 if (m.style.display === "none") {
@@ -233,7 +234,7 @@
         }
 
     </script>
-        
+
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
