@@ -19,11 +19,10 @@
   <link rel="stylesheet" href="/static/css/solarized-dark.css">
   <script src="/static/js/highlight.pack.js" async></script>
   <script src="/static/js/jquery-3.3.1.min.js" async></script>
-  <script src="/static/js/script.js" async></script>
 
   <link href="/static/css/materialize.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <link href="/static/css/style.css" type="text/css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/static/css/style.css" type="text/css" media="all" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" media="all" rel="stylesheet">
   <link href="/static/css/background.css" type="text/css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
   <!-- <link href="/static/css/animate.min.css" type="text/css" rel="stylesheet" media="screen,projection" /> -->
 </head>
@@ -79,7 +78,8 @@
       {% for group in log_entry.message_groups %}
       <div class="{{group.type}} chatlog__message-group active_hover" onclick="hoverIt(this)">
         <div class="chatlog__author-avatar-container">
-          <img class="chatlog__author-avatar" src="{{ group.author.avatar_url }}" onerror="this.src='{{ group.author.default_avatar_url }}'" alt="avatar" />
+          <img class="chatlog__author-avatar" data-fallback="{{ group.author.default_avatar_url }}" data-src="{{ group.author.avatar_url }}" onerror="loadFailed(this)" alt="📷" />
+          <!--this.src='{{ group.author.default_avatar_url }}-->
         </div>
 
         <div class="chatlog__messages">
@@ -124,7 +124,7 @@
       {% if not log_entry.open %}
       <div class="chatlog__message-group close">
         <div class="chatlog__author-avatar-container">
-          <img class="chatlog__author-avatar" src="{{ log_entry.system_avatar_url }}" alt="avatar">
+          <img class="chatlog__author-avatar" data-src="{{ log_entry.system_avatar_url }}" alt="📷">
         </div>
         <div class="chatlog__messages">
           <span class="chatlog__author-name" title="{{ log_entry.closer | string | e }}">{{ log_entry.closer.name }}</span>
@@ -236,6 +236,8 @@
       coverTrigger: false
     });
   </script>
+  <script src="/static/js/script.js"></script>
+
 </body>
 
 </html>
