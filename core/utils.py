@@ -23,12 +23,12 @@ class User:
 
     @property
     def avatar_url(self):
-        return self.avatar_url_as(format=None, size=1024)
+        return self.avatar_url_as(format=None, size=256)
 
     def is_avatar_animated(self):
         return bool(self.avatar and self.avatar.startswith("a_"))
 
-    def avatar_url_as(self, *, format=None, static_format="webp", size=1024):
+    def avatar_url_as(self, *, format=None, static_format="webp", size=256):
         if self.avatar is None:
             return self.default_avatar_url
 
@@ -42,7 +42,7 @@ class User:
         gif_fix = "&_=.gif" if format == "gif" else ""
 
         return "https://cdn.discordapp.com/avatars/{0.id}/{0.avatar}.{1}?size={2}{3}".format(
-            self, format, size, gif_fix
+            self, format, 256, gif_fix
         )
 
     @property

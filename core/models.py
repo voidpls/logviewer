@@ -116,7 +116,7 @@ class User:
         self.id = int(data.get("id"))
         self.name = data["name"]
         self.discriminator = data["discriminator"]
-        self.avatar_url = data["avatar_url"]
+        self.avatar_url = data["avatar_url"].replace('size=1024', 'size=256')
         self.mod = data["mod"]
 
     @property
