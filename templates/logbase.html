@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/static/css/solarized-dark.css">
   <script src="/static/js/highlight.pack.js" async></script>
   <script src="/static/js/jquery-3.3.1.min.js" async></script>
+  <script src="/static/js/script.js" async></script>
 
   <link href="/static/css/materialize.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
   <link href="/static/css/style.css" type="text/css" rel="stylesheet">
@@ -109,7 +110,7 @@
           <div class="chatlog__attachment" id="{{ message.id }}">
             <a href="{{ attachment.url }}">
               {% if attachment.is_image %}
-              <img class="chatlog__attachment-thumbnail" src="{{ attachment.url }}" alt="attachment" />
+              <img class="chatlog__attachment-thumbnail defer_thumbnail" data-src="{{ attachment.url }}" />
               {% else %}
               Attachment: {{ attachment.filename }}
               {% endif %}

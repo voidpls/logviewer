@@ -48,6 +48,12 @@ img {
     object-fit: contain;
 }
 
+.defer_thumbnail {
+  background-color: #33363C;
+  height: 200px;
+  width: 300px;
+}
+
 .pre {
     font-family: "Consolas", "Courier New", Courier, Monospace;
     white-space: pre-wrap;
