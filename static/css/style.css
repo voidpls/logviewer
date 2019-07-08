@@ -67,7 +67,7 @@ h5 .header {
 }
 
 #dashbots {
-  font-family: 'Bowlby One SC', 'Helvetica', 'Arial';
+  font-family: "Bowlby One SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: #FF0048;
   user-select: none;
