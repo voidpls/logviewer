@@ -20,6 +20,7 @@ if prefix == "NONE":
 
 app = Sanic(__name__)
 Compress(app)
+app.config['COMPRESS_LEVEL'] = 4
 app.using_oauth = False
 
 Session(app, interface=InMemorySessionInterface())
