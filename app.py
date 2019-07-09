@@ -4,6 +4,7 @@ from urllib.parse import urlencode, urlparse
 
 from motor.motor_asyncio import AsyncIOMotorClient
 from sanic import Sanic, response
+from sanic_compress import Compress
 from sanic.exceptions import abort, NotFound, Unauthorized
 from sanic_session import Session, InMemorySessionInterface
 from jinja2 import Environment, PackageLoader
@@ -18,12 +19,14 @@ if prefix == "NONE":
     prefix = ""
 
 app = Sanic(__name__)
+Compress(app)
 app.using_oauth = False
 
 Session(app, interface=InMemorySessionInterface())
 app.static("/static", "./static")
 
 jinja_env = Environment(loader=PackageLoader("app", "templates"))
+
 
 def render_template(name, *args, **kwargs):
     template = jinja_env.get_template(name + ".html")
@@ -44,13 +47,16 @@ async def init(app, loop):
     app.db = AsyncIOMotorClient(os.getenv("MONGO_URI")).modmail_bot
     app.session = aiohttp.ClientSession(loop=loop)
 
+
 @app.exception(NotFound)
 async def not_found(request, exc):
     return render_template("not_found")
 
+
 @app.get("/")
 async def index(request):
     return render_template("index")
+
 
 @app.get(prefix + "/raw/<key>")
 @authrequired()
