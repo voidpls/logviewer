@@ -56,6 +56,10 @@ body {
     background-color: rgb(64, 69, 75);
 }
 
+.card-panel {
+  background-color: rgba(0, 0, 0, .7) !important;
+}
+
 nav {
   background-color: #d1003b !important;
   /* z-index: 0; */
