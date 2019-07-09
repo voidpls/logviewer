@@ -127,7 +127,7 @@ def format_content_html(content: str, allow_links: bool = False) -> str:
         r"&lt;(:.*?:)(\d*)&gt;",
         r'<img class="'
         + emoji_class
-        + r'" title="\1" src="https://cdn.discordapp.com/'
+        + r'" title="\1" data-src="https://cdn.discordapp.com/'
         + r'emojis/\2.png" alt="\1">',
         content,
     )
