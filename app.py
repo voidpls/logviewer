@@ -4,7 +4,7 @@ from urllib.parse import urlencode, urlparse
 
 from motor.motor_asyncio import AsyncIOMotorClient
 from sanic import Sanic, response
-from sanic_compress import Compress
+# from sanic_compress import Compress
 from sanic.exceptions import abort, NotFound, Unauthorized
 from sanic_session import Session, InMemorySessionInterface
 from jinja2 import Environment, PackageLoader
@@ -19,8 +19,8 @@ if prefix == "NONE":
     prefix = ""
 
 app = Sanic(__name__)
-Compress(app)
-app.config['COMPRESS_LEVEL'] = 4
+# Compress(app)
+# app.config['COMPRESS_LEVEL'] = 4
 app.using_oauth = False
 
 Session(app, interface=InMemorySessionInterface())
